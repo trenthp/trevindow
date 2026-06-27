@@ -31,9 +31,9 @@ vercel.json       static hosting config
 
 ## Audio
 
-The player loads `assets/audio/song.mp3`, which is intentionally **not
-committed** — add your own track there (see `assets/audio/README.md`). The site
-works without it; playback just stays paused until the file exists.
+The player loads `assets/audio/Window.mp3` and starts on unlock (see
+`assets/audio/README.md` to swap the track). The site works without it too —
+playback just stays paused until a file exists.
 
 ## Deploy
 

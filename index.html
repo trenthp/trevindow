@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Come to My Window</title>
+  <meta name="description" content="Come to My Window — a two-sided window onto sky and cosmos." />
+  <meta name="theme-color" content="#0a0b12" />
+  <link rel="preload" as="image" href="assets/images/part1.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="is-locked">
+  <!-- ===================== LOCK SCREEN ===================== -->
+  <section id="lock" class="lock" aria-label="Locked">
+    <div class="lock__sky" aria-hidden="true"></div>
+    <div class="lock__panel">
+      <div class="jeopardy">
+        <p class="jeopardy__category">Openings &amp; Portals <span>— $1000</span></p>
+        <p class="jeopardy__clue">A hinged, glass-paned opening in a wall.</p>
+      </div>
+      <form id="lock-form" class="lock__form" autocomplete="off" novalidate>
+        <label for="passphrase" class="sr-only">Your response</label>
+        <div class="lock__field">
+          <input
+            id="passphrase"
+            name="passphrase"
+            type="text"
+            inputmode="text"
+            aria-describedby="lock-hint"
+            autocapitalize="none"
+            spellcheck="false" />
+          <button type="submit" class="lock__submit" aria-label="Submit response">
+            <span class="lock__submit-key">↵</span>
+          </button>
+        </div>
+        <p id="lock-hint" class="lock__hint" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <main id="experience" class="experience" aria-hidden="true">
+    <div class="bg" aria-hidden="true"></div>
+
+    <div class="scroll-track">
+      <div class="stage">
+        <div class="wall" id="wall">
+          <!-- Front: Part 1 — open window onto daytime sky -->
+          <figure class="face face--front">
+            <picture>
+              <source media="(max-width: 700px)" srcset="assets/images/part1@mobile.jpg" />
+              <img src="assets/images/part1.jpg" alt="An open window at night looking out onto a bright daytime sky over a green field." />
+            </picture>
+            <span class="face__shade" aria-hidden="true"></span>
+          </figure>
+
+          <!-- Back: Part 2 — window onto the cosmos -->
+          <figure class="face face--back">
+            <picture>
+              <source media="(max-width: 700px)" srcset="assets/images/part2@mobile.jpg" />
+              <img src="assets/images/part2.jpg" alt="A window in a daytime sky opening onto a dark cosmos with a glowing heart-shaped field of stars." />
+            </picture>
+            <span class="face__shade" aria-hidden="true"></span>
+          </figure>
+
+          <!-- The wall itself: four edges giving the poster real thickness -->
+          <span class="edge edge--right" aria-hidden="true"></span>
+          <span class="edge edge--left" aria-hidden="true"></span>
+          <span class="edge edge--top" aria-hidden="true"></span>
+          <span class="edge edge--bottom" aria-hidden="true"></span>
+        </div>
+
+        <div class="floor-shadow" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- HUD -->
+    <div class="scroll-hint" id="scroll-hint" aria-hidden="true">
+      <span class="scroll-hint__text">scroll to turn the wall</span>
+      <span class="scroll-hint__chevron"></span>
+    </div>
+
+    <button class="audio-toggle" id="audio-toggle" type="button" aria-pressed="false" aria-label="Toggle sound">
+      <span class="audio-toggle__icon" aria-hidden="true"></span>
+      <span class="audio-toggle__label">sound</span>
+    </button>
+
+    <audio id="audio" loop preload="auto">
+      <source src="assets/audio/Window.mp3" type="audio/mpeg" />
+    </audio>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

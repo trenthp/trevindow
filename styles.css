@@ -71,24 +71,42 @@ body.is-locked { overflow: hidden; height: 100vh; }
 
 @keyframes twinkle { from { opacity: 0.35; } to { opacity: 0.7; } }
 
-.lock__panel { position: relative; z-index: 1; max-width: 32rem; }
+.lock__panel { position: relative; z-index: 1; max-width: 36rem; width: 100%; }
 
-.lock__eyebrow {
-  margin: 0 0 0.8rem;
-  font-size: clamp(0.7rem, 2.4vw, 0.85rem);
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-  color: var(--accent);
-  opacity: 0.8;
+/* Jeopardy-style clue board */
+.jeopardy {
+  margin: 0 0 1.8rem;
+  padding: clamp(1.5rem, 5vw, 2.8rem);
+  background: linear-gradient(180deg, #0b1ad6 0%, #060ce9 45%, #04089c 100%);
+  border-radius: 8px;
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.07),
+    inset 0 0 0 6px rgba(3, 5, 70, 0.5);
 }
 
-.lock__title {
-  margin: 0 0 2.2rem;
-  font-weight: 500;
-  font-size: clamp(2.1rem, 8vw, 4rem);
-  line-height: 1.05;
+.jeopardy__category {
+  margin: 0 0 1.1rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.72rem, 2.6vw, 0.92rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffd166;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+.jeopardy__category span { color: #fff2cc; opacity: 0.85; }
+
+.jeopardy__clue {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 4.2vw, 1.85rem);
+  line-height: 1.28;
   letter-spacing: 0.01em;
-  text-shadow: 0 2px 30px rgba(120, 150, 220, 0.35);
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55);
 }
 
 .lock__form { display: block; }
@@ -333,21 +351,6 @@ body:not(.is-locked) .experience { opacity: 1; }
   50% { transform: rotate(45deg) translate(3px, 3px); opacity: 1; }
 }
 
-.side-label {
-  position: fixed;
-  top: 50%;
-  z-index: 5;
-  font-size: 0.72rem;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: rgba(220, 228, 245, 0.55);
-  transform: translateY(-50%);
-  transition: opacity 0.5s var(--ease);
-  pointer-events: none;
-}
-.side-label--front { left: 4vw; }
-.side-label--back  { right: 4vw; }
-
 .audio-toggle {
   position: fixed;
   top: 2vh; right: 2vw;
@@ -406,7 +409,6 @@ body:not(.is-locked) .experience { opacity: 1; }
    =========================================================== */
 @media (max-width: 700px) {
   :root { --w: min(92vw, 70vh); --d: clamp(34px, 11vw, 64px); }
-  .side-label { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

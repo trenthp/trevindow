@@ -14,26 +14,28 @@
   <section id="lock" class="lock" aria-label="Locked">
     <div class="lock__sky" aria-hidden="true"></div>
     <div class="lock__panel">
-      <p class="lock__eyebrow">a window in two worlds</p>
-      <h1 class="lock__title">Come&nbsp;to&nbsp;My&nbsp;Window</h1>
+      <div class="jeopardy">
+        <p class="jeopardy__category">Openings &amp; Portals <span>— $1000</span></p>
+        <p class="jeopardy__clue">Melissa&nbsp;Etheridge begged you to "come to" this hinged, glass-paned opening in a wall.</p>
+      </div>
       <form id="lock-form" class="lock__form" autocomplete="off" novalidate>
-        <label for="passphrase" class="sr-only">Passphrase</label>
+        <label for="passphrase" class="sr-only">Your response</label>
         <div class="lock__field">
           <input
             id="passphrase"
             name="passphrase"
             type="text"
             inputmode="text"
-            placeholder="speak the word"
+            placeholder="respond in the form of a question…"
             aria-describedby="lock-hint"
             autocapitalize="none"
             spellcheck="false" />
-          <button type="submit" class="lock__submit" aria-label="Unlock">
+          <button type="submit" class="lock__submit" aria-label="Submit response">
             <span class="lock__submit-key">↵</span>
           </button>
         </div>
         <p id="lock-hint" class="lock__hint" role="status" aria-live="polite">
-          Enter the passphrase to open the window.
+          Remember to phrase your response in the form of a question.
         </p>
       </form>
     </div>
@@ -80,9 +82,6 @@
       <span class="scroll-hint__text">scroll to turn the wall</span>
       <span class="scroll-hint__chevron"></span>
     </div>
-
-    <div class="side-label side-label--front" id="label-front" aria-hidden="true">I · sky</div>
-    <div class="side-label side-label--back" id="label-back" aria-hidden="true">II · cosmos</div>
 
     <button class="audio-toggle" id="audio-toggle" type="button" aria-pressed="false" aria-label="Toggle sound">
       <span class="audio-toggle__icon" aria-hidden="true"></span>

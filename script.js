@@ -8,7 +8,15 @@
 (function () {
   "use strict";
 
-  var PASSPHRASE = "window";
+  var ANSWER = "window";
+
+  // Accept the bare word or a Jeopardy-style "What is (a) window?" response.
+  function isCorrect(raw) {
+    var v = (raw || "").trim().toLowerCase().replace(/[?.!]+$/, "").trim();
+    v = v.replace(/^what(?:'s| is| are)?\s+/, "");
+    v = v.replace(/^(?:a|an|the)\s+/, "");
+    return v === ANSWER;
+  }
 
   var body = document.body;
   var lock = document.getElementById("lock");
@@ -23,8 +31,6 @@
 
   var frontShade = document.querySelector(".face--front .face__shade");
   var backShade = document.querySelector(".face--back .face__shade");
-  var labelFront = document.getElementById("label-front");
-  var labelBack = document.getElementById("label-back");
 
   var audio = document.getElementById("audio");
   var audioToggle = document.getElementById("audio-toggle");
@@ -53,7 +59,7 @@
 
   function rejectPass() {
     lock.classList.add("is-wrong");
-    hint.textContent = "Not quite. Listen for the word in the title.";
+    hint.textContent = "Sorry, that's not it. (Phrase it in the form of a question.)";
     input.value = "";
     input.focus();
     window.setTimeout(function () {
@@ -63,8 +69,7 @@
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var value = (input.value || "").trim().toLowerCase();
-    if (value === PASSPHRASE) {
+    if (isCorrect(input.value)) {
       unlock();
     } else {
       rejectPass();
@@ -136,23 +141,18 @@
 
   function update() {
     progress = computeProgress();
-    var angle = progress * 180;
+    var angle = progress * -180;           // scroll down spins it the other way
 
     wall.style.transform = "rotateY(" + angle.toFixed(3) + "deg)";
 
     // shading: darken whichever face is turning away from the light/viewer
     var rad = (angle * Math.PI) / 180;
-    var facingFront = Math.cos(rad);       //  1 at 0°, -1 at 180°
-    var facingBack = -facingFront;         // -1 at 0°,  1 at 180°
+    var facingFront = Math.cos(rad);       //  1 at 0°, -1 at ±180°
+    var facingBack = -facingFront;         // -1 at 0°,  1 at ±180°
 
     // map facing [-1..1] -> shade opacity [~0.72 .. 0]
     frontShade.style.opacity = (clamp(1 - facingFront, 0, 2) * 0.42).toFixed(3);
     backShade.style.opacity = (clamp(1 - facingBack, 0, 2) * 0.42).toFixed(3);
-
-    if (labelFront && labelBack) {
-      labelFront.style.opacity = clamp(facingFront, 0, 1).toFixed(2);
-      labelBack.style.opacity = clamp(facingBack, 0, 1).toFixed(2);
-    }
 
     // hide the scroll hint once the user has begun turning the wall
     if (!hintHidden && progress > 0.04) {

@@ -1,0 +1,9 @@
+# local audio (placeholder path — drop the real song.mp3 in to use it)
+assets/audio/song.mp3
+
+# os / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+.vercel
+node_modules/
